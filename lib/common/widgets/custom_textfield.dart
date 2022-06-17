@@ -12,6 +12,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       controller: textEditingController,
       decoration: InputDecoration(
         hintText: hintText,
@@ -22,7 +23,12 @@ class CustomTextField extends StatelessWidget {
           borderSide: BorderSide(color: Colors.black38),
         ),
       ),
-      // validator: ,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Enter your $hintText';
+        }
+        return null;
+      },
     );
   }
 }
