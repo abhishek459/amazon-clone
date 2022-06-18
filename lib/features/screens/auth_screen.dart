@@ -30,11 +30,22 @@ class _AuthScreenState extends State<AuthScreen> {
 
   final AuthService authService = AuthService();
 
-  void signUpUser() {
+  void _signUpUser() {
     FocusScope.of(context).unfocus();
     if (_signUpFormKey.currentState!.validate()) {
       authService.signUpUser(
         name: _nameController.text,
+        email: _emailController.text,
+        password: _passwordController.text,
+        context: context,
+      );
+    }
+  }
+
+  void _signInUser() {
+    FocusScope.of(context).unfocus();
+    if (_signInFormKey.currentState!.validate()) {
+      authService.signInUser(
         email: _emailController.text,
         password: _passwordController.text,
         context: context,
@@ -99,7 +110,7 @@ class _AuthScreenState extends State<AuthScreen> {
                           hintText: 'Password',
                         ),
                         const SizedBox(height: 10),
-                        CustomButton(label: 'Sign Up', onPressed: signUpUser),
+                        CustomButton(label: 'Sign Up', onPressed: _signUpUser),
                       ],
                     ),
                   ),
@@ -133,7 +144,7 @@ class _AuthScreenState extends State<AuthScreen> {
                           hintText: 'Password',
                         ),
                         const SizedBox(height: 10),
-                        CustomButton(label: 'Sign Up', onPressed: () {}),
+                        CustomButton(label: 'Sign In', onPressed: _signInUser),
                       ],
                     ),
                   ),
