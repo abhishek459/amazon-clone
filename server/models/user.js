@@ -25,6 +25,9 @@ const userSchema = mongoose.Schema({
         type: String,
         default: 'user'
     },
+    token: {
+        type: String
+    }
 })
 
 userSchema.pre('save', async function (next) {
@@ -53,7 +56,9 @@ userSchema.statics.findByCredentials = async (email, password) => {
 
 userSchema.methods.generateAuthToken = async function () {
     const user = this
-    const token = jwt.sign({ _id: user._id.toString() }, 'somesecretsauce')
+    const token = jwt.sign({ id: user._id.toString() }, 'somesecretsauce')
+    user.token = token
+    await user.save()
     return token
 }
 

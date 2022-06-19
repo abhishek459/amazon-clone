@@ -1,4 +1,5 @@
 const express = require("express");
+const userAuth = require("../middleware/user");
 const User = require("../models/user");
 
 const authRouter = express.Router();
@@ -37,6 +38,10 @@ authRouter.post("/api/signin", async (req, res) => {
   } catch (error) {
     res.status(500).send({ error: error.message })
   }
+})
+
+authRouter.get("/validate", userAuth, async (req, res) => {
+  res.send(req.user)
 })
 
 module.exports = authRouter;
