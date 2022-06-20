@@ -41,6 +41,10 @@ authRouter.post("/api/signin", async (req, res) => {
 })
 
 authRouter.get("/validate", userAuth, async (req, res) => {
+  res.send(true)
+})
+
+authRouter.get("/me", userAuth, (req, res) => {
   res.send(req.user)
 })
 

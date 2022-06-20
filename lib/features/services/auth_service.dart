@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
@@ -83,7 +85,7 @@ class AuthService {
     }
   }
 
-  Future<void> getUserData(BuildContext context) async {
+  Future<void> validateUser(BuildContext context) async {
     try {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       String? token = preferences.getString('token');
@@ -96,13 +98,23 @@ class AuthService {
         Uri.parse('$uri/validate'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-          'token': token ?? ''
+          'token': token!
         },
       );
 
       bool response = jsonDecode(tokenResponse.body);
       if (response == true) {
-        print('object');
+        http.Response userData = await http.get(
+          Uri.parse('$uri/me'),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'token': token
+          },
+        );
+
+        UserProvider userProvider =
+            Provider.of<UserProvider>(context, listen: false);
+        userProvider.setUser(userData.body);
       }
     } catch (e) {
       showSnackBar(context, e.toString());

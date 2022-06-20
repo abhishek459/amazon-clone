@@ -14,7 +14,7 @@ const userAuth = async (req, res, next) => {
         req.user = user
         next()
     } catch (error) {
-        res.status(401).send({ msg: 'Session expired, please login again' })
+        res.status(401).send(false)
     }
     next()
 }
