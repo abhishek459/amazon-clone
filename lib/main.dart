@@ -1,11 +1,12 @@
-import 'package:amazon_clone/constants/global_variables.dart';
-import 'package:amazon_clone/features/home/screens/home_screen.dart';
-import 'package:amazon_clone/features/screens/auth_screen.dart';
-import 'package:amazon_clone/features/services/auth_service.dart';
-import 'package:amazon_clone/providers/user.dart';
-import 'package:amazon_clone/router.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'constants/global_variables.dart';
+import 'features/home/screens/home_screen.dart';
+import 'features/screens/auth_screen.dart';
+import 'features/services/auth_service.dart';
+import 'providers/user.dart';
+import 'router.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
