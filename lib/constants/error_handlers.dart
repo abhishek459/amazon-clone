@@ -1,8 +1,9 @@
 import 'dart:convert';
 
-import 'package:amazon_clone/constants/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+
+import './utils.dart';
 
 void httpErrorHandler({
   required http.Response response,

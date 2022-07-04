@@ -1,5 +1,6 @@
-import 'package:amazon_clone/models/user.dart';
 import 'package:flutter/cupertino.dart';
+
+import '../models/user.dart';
 
 class UserProvider with ChangeNotifier {
   User _user = User(

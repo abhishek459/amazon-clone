@@ -1,7 +1,8 @@
-import 'package:amazon_clone/models/user.dart';
-import 'package:amazon_clone/providers/user.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../../models/user.dart';
+import '../../../providers/user.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String routeName = '/home';
